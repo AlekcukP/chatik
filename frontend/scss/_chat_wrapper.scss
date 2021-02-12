@@ -1,0 +1,33 @@
+.chat{
+
+    &_log{
+        background-color: white;
+        border-radius: 5px;
+        padding: 10px;
+        height: 500px;
+        overflow-y: scroll;
+    }
+
+    &_action{
+        margin-top: 10px;
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    &_form{
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    &_text{
+        flex-grow: 3;
+    }
+
+    &_send{
+        flex-grow: 0.5;
+        display: flex;
+        justify-content: center;
+    }
+
+}

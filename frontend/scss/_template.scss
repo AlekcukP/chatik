@@ -1,0 +1,74 @@
+.application_wrapper{
+    max-width: 70%;
+    height: 100%;
+    margin: 10px 0;
+}
+
+.header{
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 10px;
+
+    &_user{
+        display: flex;
+        align-items: center;
+
+        &_image{
+            width: 60px;
+        }
+        &_image img{
+            width: 100%;
+            border-radius: 50%;
+        }
+
+        &_info{
+            display: block;
+            margin-left: 20px;
+        }
+        &_info li{
+            list-style: none;
+        }
+
+        &_name{
+            text-transform: uppercase;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        &_status{
+            font-size: 12px;
+            color: gray;
+            text-align: center;
+        }
+    }
+}
+
+.main{
+    display: flex;
+
+    &_nav{
+
+        &_list{
+            display: block;
+        }
+        &_item{
+            list-style: none;
+            display: block;
+        }
+        &_link{
+            display: block;
+            text-decoration: none;
+            color: #000;
+            padding: 20px 20px 20px 60px;
+            margin: 10px 0;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+    }
+
+    &_content{
+        margin: 10px 0 0 10px;
+    }
+}

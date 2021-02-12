@@ -1,0 +1,9 @@
+.hideDots span{
+
+    &::after{
+        transform: translateX(0);
+    }
+    &::before{
+        transform: translateX(0);
+    }
+}
