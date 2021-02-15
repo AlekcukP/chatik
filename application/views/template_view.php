@@ -22,9 +22,10 @@
         <main class="main">
             <nav class="main_nav">
                 <ul class="main_nav_list">
-                    <li class="main_nav_item"><a class="main_nav_link" href="#">Contacts</a></li>
-                    <li class="main_nav_item"><a class="main_nav_link" href="#">Settings</a></li>
-                    <li class="main_nav_item"><a class="main_nav_link" href="#">Exit</a></li>
+                    <li class="main_nav_item"><a class="main_nav_link main_nav_link_chat" href="/chat">Chat</a></li>
+                    <li class="main_nav_item"><a class="main_nav_link main_nav_link_contact" href="#">Contacts</a></li>
+                    <li class="main_nav_item"><a class="main_nav_link main_nav_link_settings" href="/settings">Settings</a></li>
+                    <li class="main_nav_item"><a class="main_nav_link main_nav_link_exit" href="#">Exit</a></li>
                 </ul>
             </nav>
             <section class="main_content">
@@ -33,7 +34,7 @@
         </main>
     </div>
     <div class="modal_wrapper" id="modalWrapper">
-        <div class="cross_btn" id="crossBtn"></div>
+        <div class="modal_wrapper_cross" id="crossBtn"></div>
     </div>
 </body>
 </html>

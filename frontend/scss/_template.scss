@@ -65,6 +65,33 @@
             margin: 10px 0;
             background-color: #fff;
             border-radius: 5px;
+            position: relative;
+
+            &::before{
+                content: '';
+                display: block;
+                width: 40px;
+                height: 40px;
+                top: 12px;
+                left: 8px;
+                position: absolute;
+            }
+            &_chat::before{
+                background: no-repeat center url('/dist/png/chat.png');
+                background-size: 40px;
+            }
+            &_contact::before{
+                background: no-repeat center url('/dist/png/contacts.png');
+                background-size: 40px;
+            }
+            &_settings::before{
+                background: no-repeat center url('/dist/png/tools.png');
+                background-size: 50px;
+            }
+            &_exit::before{
+                background: no-repeat center url('/dist/png/exit.png');
+                background-size: 40px;
+            }
         }
     }
 

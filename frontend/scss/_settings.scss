@@ -1,0 +1,130 @@
+.settings{
+
+    &_buttons{
+        display: flex;
+        max-width: 300px;
+        flex-wrap: wrap;
+    }
+
+    &_button{
+        width: 130px;
+        height: 140px;
+        border-radius: 5px;
+        margin: 0 10px 10px 0;
+        background-color: #fff;
+        text-align: center;
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-end;
+        cursor: pointer;
+        align-items: center;
+
+        &:hover{
+            border: 1px solid #999;
+            box-shadow: 2px 2px 3px #999;
+        }
+
+        &_sign{
+            margin-bottom: 10px;
+            border-top: 1px solid #999;
+            width: 75%;
+            display: block;
+            position: relative;
+
+            &::before{
+                content: '';
+                display: block;
+                width: 80px;
+                height: 80px;
+                position: absolute;
+                top: -90px;
+                left: 10px;
+            }
+            &_avatar::before{
+                background: no-repeat center url('/dist/png/ninja.png');
+                background-size: 80px;
+            }
+            &_password::before{
+                background: no-repeat center url('/dist/png/password.png');
+                background-size: 80px;
+            }
+            &_back::before{
+                background: no-repeat center url('/dist/png/back.png');
+                background-size: 80px;
+                transform: rotateY(180deg);
+            }
+            &_login::before{
+                background: no-repeat center url('/dist/png/user.png');
+                background-size: 80px;
+            }
+
+        }
+    }
+}
+
+
+
+.modals{
+    background: #fff;
+    border-radius: 5px;
+    min-width: 300px;
+    display: none;
+
+    &_form{
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+
+    &_section{
+        width: 250px;
+        margin: 10px;
+    }
+
+    &_border{
+        padding-bottom: 10px;
+        border-bottom: 1px solid #999;
+    }
+
+    &_btns{
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    &_avatar{
+
+        &_picture{
+
+            & img{
+                width: 100%;
+                border-radius: 50%;
+            }
+        }
+
+        &_change{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0;
+            padding: 10px;
+            border-top: 1px solid #999;
+            border-bottom: 1px solid #999;
+
+            & input{
+                display: none;
+            }
+        }
+
+        &_sign{
+            font-size: 18px;
+        }
+
+        &_label{
+            width: 100px;
+            height: 100px;
+            background: no-repeat center url('/dist/png/camera.png');
+            background-size: 100px;
+            cursor: pointer;
+        }
+    }
+}

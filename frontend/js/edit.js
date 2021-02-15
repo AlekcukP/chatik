@@ -1,6 +1,4 @@
 window.addEventListener('DOMContentLoaded', ()=>{
-    const chatWrapper = document.getElementById('log');
-
     const editClass = 'chat_message_edit';
     const actionClass = 'chat_message_action';
     const textClass = 'chat_message_text';
@@ -23,8 +21,9 @@ window.addEventListener('DOMContentLoaded', ()=>{
     const buttonsOpenStep = 100;
     const buttonsHideSpeed = 0;
     const buttonsHideStep = 50;
-    let  currentTurget;
+    let  currentTarget;
 
+    const chatWrapper = document.getElementById('log');
 
     chatWrapper.addEventListener('click', onChatWrapperClick);
 
@@ -58,12 +57,12 @@ window.addEventListener('DOMContentLoaded', ()=>{
             const extraBtnsEl = Array.from(messageBlock.querySelectorAll(`.${btnClass}`));
             let time = buttonsOpenSpeed;
 
-            if(currentTurget && currentTurget !== messageBlock){
-                canelEditon(currentTurget);
-                setStartPosition(currentTurget);
-                currentTurget = messageBlock;
-            } else if(currentTurget !== messageBlock){
-                currentTurget = messageBlock;
+            if(currentTarget && currentTarget !== messageBlock){
+                canelEditon(currentTarget);
+                setStartPosition(currentTarget);
+                currentTarget = messageBlock;
+            } else if(currentTarget !== messageBlock){
+                currentTarget = messageBlock;
             }
 
             dotsBlock.classList.add(hideDotsClass);

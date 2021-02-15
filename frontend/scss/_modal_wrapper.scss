@@ -1,0 +1,31 @@
+.modal_wrapper{
+    display: none;
+    z-index: 5;
+
+    &_cross{
+        display: block;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 5%;
+        right: 5%;
+        background: no-repeat center url('/dist/png/cross.png');
+        background-size: 50px;
+        filter: invert(60%);
+    }
+}
+.modal_wrapper_open:hover .modal_wrapper_cross{
+    filter: invert(100%);
+}
+
+.modal_wrapper_open{
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: .7;
+    overflow: hidden;
+    z-index: 5;
+    cursor: pointer;
+}

@@ -1,5 +1,9 @@
 .chat{
 
+    &_wrapper{
+        max-width: 600px;
+    }
+
     &_log{
         background-color: white;
         border-radius: 5px;
