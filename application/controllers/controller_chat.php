@@ -1,21 +1,43 @@
 <?php
-    class Controller_Chat extends Controller
+    class ControllerChat extends Controller
     {
         public function __construct()
         {
-            $this->model = new Model_Chat();
+            $this->model = new ModelChat();
             $this->view = new View();
         }
 
-        public function action_index()
+        public function actionIndex()
         {
-            $messages = $this->model->get_data();
+            $this->sessionCheck();
+            $messages = $this->model->getData();
             $this->view->generate('chat_view.php', 'template_view.php', $messages);
         }
 
-        public function action_send()
+        public function actionSend()
         {
-            $this->model->send_message($_POST['message']);
+            $this->model->createMessage($_POST['message']);
             header('Location: /');
+        }
+
+        public function actionUpdate()
+        {
+            $message_json = file_get_contents('php://input');
+            $this->model->updateMessage($message_json);
+            header('Location: /');
+        }
+
+        public function actionDelete()
+        {
+            $message_json = file_get_contents('php://input');
+            $this->model->deleteMessage($message_json);
+            header('Location: /');
+        }
+
+        public function sessionCheck()
+        {
+            if (! isset($_SESSION['user_id'])) {
+                header('Location: /');
+            }
         }
     }

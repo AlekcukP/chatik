@@ -1,7 +1,7 @@
 <section id="log" class="chat_wrapper">
     <ul class="chat_log">
         <?php foreach($data as $message):?>
-            <?php if ($_SESSION['user_id'] === $message['user_id']):?>
+            <?php if ($_SESSION['user_id'] == $message['user_id']):?>
                 <li class="message">
                     <span class="miniature_wrapper">
                         <span class="message_miniature">
@@ -28,7 +28,7 @@
                         </span>
                     </span>
                 </li>
-            <?php else: ?>
+            <?php else:?>
                 <li class="message group_message">
                     <span class="miniature_wrapper">
                         <span class="message_miniature">
@@ -43,8 +43,8 @@
                         </span>
                     </span>
                 </li>
-            <?php endif; ?>
-        <?php endforeach; ?>
+            <?php endif;?>
+        <?php endforeach;?>
     </ul>
     <div class="chat_action">
         <form method="POST" action="/chat/send" class="chat_form" >

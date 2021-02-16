@@ -1,9 +1,9 @@
 <?php
     class Route
     {
-        static function start()
+        public static function start()
         {
-            $controller_name = 'Chat';
+            $controller_name = 'login';
             $action_name = 'index';
 
             $routes = explode('/', $_SERVER['REQUEST_URI']);
@@ -17,18 +17,18 @@
             }
 
             $model_name = 'Model_'.$controller_name;
-            $controller_name = 'Controller_'.$controller_name;
-            $action_name = 'action_'.$action_name;
-
             $model_file = strtolower($model_name).'.php';
             $model_path = 'application/models/'.$model_file;
+
+            $controller_file = 'controller_'.$controller_name.'.php';
+            $controller_name = 'Controller'.ucfirst($controller_name);
+            $controller_path = "application/controllers/".$controller_file;
+
+            $action_name = 'action'.ucfirst($action_name);
 
             if (file_exists($model_path)) {
                 include $model_path;
             }
-
-            $controller_file = strtolower($controller_name).'.php';
-            $controller_path = "application/controllers/".$controller_file;
 
             if(file_exists($controller_path)) {
                 include $controller_path;

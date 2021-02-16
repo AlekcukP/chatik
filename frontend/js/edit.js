@@ -138,12 +138,11 @@ window.addEventListener('DOMContentLoaded', ()=>{
 
     function fetchEl(text, id, action){
         let data = {
-            newMessage: text,
-            messageId: id,
-            action: action,
+            message_text: text,
+            message_id: id,
         }
 
-        fetch(`/index.php?page=chat_ajax`, {
+        fetch(`chat/${action}`, {
             credentials: 'include',
             method: 'POST',
             headers: {

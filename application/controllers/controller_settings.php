@@ -1,15 +1,22 @@
 <?php
 
-class Controller_Settings extends Controller
+class ControllerSettings extends Controller
 {
     public function __construct()
     {
-        $this->model = new Model_Settings();
+        $this->model = new ModelSettings();
         $this->view = new View();
     }
 
-    public function action_index()
+    public function actionIndex()
     {
+        $this->sessionCheck();
         $this->view->generate('settings_view.php', 'template_view.php');
+    }
+    public function sessionCheck()
+    {
+        if (! isset($_SESSION['user_id'])) {
+            header('Location: /');
+        }
     }
 }

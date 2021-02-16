@@ -25,7 +25,7 @@
                     <li class="main_nav_item"><a class="main_nav_link main_nav_link_chat" href="/chat">Chat</a></li>
                     <li class="main_nav_item"><a class="main_nav_link main_nav_link_contact" href="#">Contacts</a></li>
                     <li class="main_nav_item"><a class="main_nav_link main_nav_link_settings" href="/settings">Settings</a></li>
-                    <li class="main_nav_item"><a class="main_nav_link main_nav_link_exit" href="#">Exit</a></li>
+                    <li class="main_nav_item"><a class="main_nav_link main_nav_link_exit" href="/login/logout">Exit</a></li>
                 </ul>
             </nav>
             <section class="main_content">
