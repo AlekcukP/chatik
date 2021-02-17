@@ -12,12 +12,20 @@ window.addEventListener('DOMContentLoaded', ()=>{
     const modalWrapperlEl = document.querySelector(modalWrapperId);
     const settingsEl = document.querySelector(`.${settingsClass}`);
 
-    settingsEl.addEventListener('click', openModal);
+    settingsEl.addEventListener('click', switcher);
     modalWrapperlEl.addEventListener('click', closeModal);
 
-    function openModal(e){
+    function switcher(e){
         if(e.target.closest(`.${settingsBtnClass}`)){
-            let modalType = e.target.closest(`.${settingsBtnClass}`).dataset.modal;
+            openModal(e.target);
+        }
+        if(e.target.contains(modalBackBtnClass)){
+            closeModal();
+        }
+    }
+
+    function openModal(el){
+        let modalType = el.closest(`.${settingsBtnClass}`).dataset.modal;
 
             modalEls.forEach((item)=>{
                 if(item.classList.contains(modalType)){
@@ -26,10 +34,6 @@ window.addEventListener('DOMContentLoaded', ()=>{
                     item.classList.add(modalOpenClass);
                 }
             });
-        }
-        if(e.target.contains(modalBackBtnClass)){
-            closeModal();
-        }
     }
 
     function closeModal(){

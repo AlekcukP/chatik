@@ -6,7 +6,9 @@
             $this->link = mysqli_connect(HOST_NAME, SQL_LOGIN, SQL_PASSWORD, DB_NAME);
             $this->sql_message_update = "UPDATE messages SET message_text = ? WHERE id = ?";
             $this->sql_message_delete = "DELETE FROM messages WHERE id = ?";
-            $this->sql_message_create = "INSERT INTO chat.messages (user_id, message_text, message_time) VALUES (?, ?, ?)";
+            $this->sql_message_create = "INSERT INTO
+                                                    chat.messages (user_id, message_text, message_time)
+                                                VALUES (?, ?, ?)";
             $this->sql_messages_query = mysqli_query(
                 $this->link,
                 "SELECT

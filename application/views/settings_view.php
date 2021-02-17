@@ -16,9 +16,9 @@
 
     <div id="settingsModal">
         <div class="modals modals_avatar">
-            <form action="/settings/avatar" method="post" class="modals_form">
+            <form action="/settings/avatar" method="POST" class="modals_form" enctype="multipart/form-data">
                 <div class="modals_avatar_picture modals_section">
-                    <img src="/avatar/default.png" alt="User avatar">
+                    <img src="<?php echo($data['avatar']); ?>" alt="User avatar" id="settingsUserAvatar">
                 </div>
                 <div class="modals_avatar_change modals_section">
                     <span class="modals_avatar_sign">Pick avatar:</span>
@@ -26,7 +26,7 @@
                     <input type="file" name="avatar" id="inputAvatar">
                 </div>
                 <div class="modals_avatar_btns modals_btns modals_section">
-                    <input type="button" value="Save" class="btn btn-primary">
+                    <input type="submit" value="Save" class="btn btn-primary">
                     <a href="/settings" class="modals_back btn btn-secondary">Back</a>
                 </div>
             </form>
@@ -50,7 +50,7 @@
         <div class="modals modals_login">
             <form action="/settings/login" method="post" class="modals_form">
                 <div class="modals_login_current modals_section modals_border">
-                    <span>Your current login: <strong>User name</strong></span>
+                    <span>Your current login: <strong><?php echo($data['user_login']); ?></strong></span>
                 </div>
                 <div class="modals_login_input modals_section modals_border">
                     <label class="form-label" for="modalLoginInput">Enter new login:</label>
