@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     const noneClass = 'display_none';
     const canelClass = 'chat_message_canel';
     const doneClass = 'chat_message_done';
-    const messageClass = '.chat_message';
+    const messageClass = '.message';
     const extraClass = 'chat_message_extra';
     const denyClass = 'chat_message_deny';
     const deleteClass = 'chat_message_delete';
@@ -23,7 +23,10 @@ window.addEventListener('DOMContentLoaded', ()=>{
     const buttonsHideStep = 50;
     let  currentTarget;
 
-    const chatWrapper = document.getElementById('log');
+    const chatWrapper = document.querySelector('#log');
+    const chatLogEl = chatWrapper.querySelector('.chat_log');
+
+    chatLogEl.scrollTo(0, chatLogEl.scrollHeight);
 
     chatWrapper.addEventListener('click', onChatWrapperClick);
 

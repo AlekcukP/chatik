@@ -2,17 +2,14 @@
 
     class ModelSettings extends Model
     {
-        public function __construct()
-        {
-            $this->link = mysqli_connect(HOST_NAME, SQL_LOGIN, SQL_PASSWORD, DB_NAME);
-            $this->sql_user_data = "SELECT
-                                        user_id,
-                                        user_login,
-                                        avatar
-                                    FROM users
-                                    WHERE user_id = ?";
-            $this->sql_user_avatar = "UPDATE chat.users SET avatar = ? WHERE user_id = ?";
-        }
+        public $sql_user_data = "SELECT
+                                    user_id,
+                                    user_login,
+                                    avatar
+                                FROM users
+                                WHERE user_id = ?";
+
+        public $sql_user_avatar = "UPDATE chat.users SET avatar = ? WHERE user_id = ?";
 
         public function getUserData()
         {

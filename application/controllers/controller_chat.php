@@ -10,13 +10,13 @@
         public function actionIndex()
         {
             $this->sessionCheck();
-            $messages = $this->model->getData();
+            $messages = $this->model->getMessages();
             $this->view->generate('chat_view.php', 'template_view.php', $messages);
         }
 
         public function actionSend()
         {
-            $this->model->createMessage($_POST['message']);
+            $this->model->createMessage($_POST['message'], $_SESSION['user_id']);
             header('Location: /');
         }
 
@@ -24,19 +24,17 @@
         {
             $message_json = file_get_contents('php://input');
             $this->model->updateMessage($message_json);
-            header('Location: /');
         }
 
         public function actionDelete()
         {
             $message_json = file_get_contents('php://input');
             $this->model->deleteMessage($message_json);
-            header('Location: /');
         }
 
         public function sessionCheck()
         {
-            if (! isset($_SESSION['user_id'])) {
+            if (!isset($_SESSION['user_id'])) {
                 header('Location: /');
             }
         }

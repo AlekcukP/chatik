@@ -17,6 +17,6 @@
             if (count($this->model->checkUser($_POST['login'])) == 0) {
                 $this->model->createUser($_POST['login'], $_POST['password']);
             }
-            header('Location: /')
+            header('Location: /');
         }
     }

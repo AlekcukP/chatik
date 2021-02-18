@@ -26,21 +26,25 @@ class ControllerLogin extends Controller
 
     public function actionCheck()
     {
-        $check_result = $this->model->checkUser($_POST['login'], $_POST['password']);
+        $user_data = $this->model->getUserData($_POST['login']);
 
-        if ($check_result === 'confirmed') {
-            $this->model->setSessionParams($_POST['login']);
+        if (!$user_data) {
+            $this->actionLogin();
+        }
+
+        if ($user_data['user_password'] === $_POST['password']){
+            $_SESSION['user_id'] = $user_data['user_id'];
             header('Location: /chat');
-        } elseif ($check_result === 'password') {
-            header('Location: /login/pass');
-        } else {
-            header('Location: /login/login');
+        } elseif ($user_data['user_password'] !== $_POST['password']) {
+            $this->actionPass();
         }
     }
 
     public function actionLogout()
     {
-        $this->model->unsetSessionParams();
+        unset($_SESSION['user_id']);
+        session_destroy();
+
         $this->actionIndex();
     }
 
