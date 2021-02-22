@@ -1,5 +1,5 @@
 <?php
-    class Validation
+    class Validator
     {
         public function validateLogin($login)
         {
@@ -11,6 +11,22 @@
                 return 'Login must be no more than 30 symbols';
             } else {
                 return NULL;
+            }
+        }
+
+        public function validatePassword($password) {
+            if (strlen($password) <4) {
+                return 'Password must be at least 4 symbols';
+            } else {
+                return NULL;
+            }
+        }
+
+        public function validateEmail($email) {
+            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                return NULL;
+            } else {
+                return 'Incorrect email';
             }
         }
     }

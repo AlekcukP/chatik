@@ -4,8 +4,8 @@ class ControllerLogin extends Controller
 {
     public function __construct()
     {
-        $this->model = new ModelLogin();
-        $this->view = new View();
+        $this->model = new ModelLogin;
+        $this->view = new View;
     }
 
     public function actionIndex()
@@ -14,29 +14,36 @@ class ControllerLogin extends Controller
         $this->view->generate('', 'login_view.php');
     }
 
-    public function actionPass()
+    public function actionError($error)
     {
-        $this->view->generate('', 'login_view.php', 'password');
-    }
-
-    public function actionLogin()
-    {
-        $this->view->generate('', 'login_view.php', 'login');
+        $this->view->generate('', 'login_view.php', '', $error);
     }
 
     public function actionCheck()
     {
         $user_data = $this->model->getUserData($_POST['login']);
+        $error = [];
 
         if (!$user_data) {
-            $this->actionLogin();
-        }
+            $error['login'] = 'There is no user with such login.';
+            $this->actionError($error);
 
-        if ($user_data['user_password'] === $_POST['password']){
+            return;
+        }
+        if(!$user_data['email_verificated']){
+            $error['email'] = 'Please, verificate your email.';
+            $this->actionError($error);
+
+            return;
+        }
+        if ($user_data['user_password'] === $_POST['password']) {
             $_SESSION['user_id'] = $user_data['user_id'];
             header('Location: /chat');
         } elseif ($user_data['user_password'] !== $_POST['password']) {
-            $this->actionPass();
+            $error['password'] = 'You entered wrong password.';
+            $this->actionError($error);
+
+            return;
         }
     }
 

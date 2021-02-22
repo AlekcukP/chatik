@@ -5,6 +5,7 @@
         {
             $controller_name = 'login';
             $action_name = 'index';
+            $param = NULL;
 
             $routes = explode('/', $_SERVER['REQUEST_URI']);
 
@@ -14,6 +15,10 @@
 
             if (!empty($routes[2])) {
                 $action_name = $routes[2];
+            }
+
+            if (!empty($routes[3])) {
+                $param = $routes[3];
             }
 
             $model_name = 'Model_'.$controller_name;
@@ -40,7 +45,7 @@
             $action = $action_name;
 
             if (method_exists($controller, $action)) {
-                $controller->$action();
+                $controller->$action($param);
             } else {
                 Route::ErrorPage404();
             }
@@ -51,7 +56,7 @@
             $host = 'http://'.$_SERVER['HTTP_HOST'].'/';
 
             header('HTTP/1.1 404 Not Found');
-            header("Status: 404 Not Found");
+            header('Status: 404 Not Found');
             header('Location:'.$host.'404');
         }
     }

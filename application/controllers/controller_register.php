@@ -3,8 +3,9 @@
     {
         public function __construct()
         {
-            $this->model = new ModelRegister();
-            $this->view = new View();
+            $this->model = new ModelRegister;
+            $this->view = new View;
+            $this->validator = new Validator;
         }
 
         public function actionIndex()
@@ -12,11 +13,42 @@
             $this->view->generate('', 'register_view.php');
         }
 
+        public function actionError($error)
+        {
+            $this->view->generate('', 'register_view.php', '', $error);
+        }
+
+        public function actionConfirm($token)
+        {
+            $this->model->confirmEmail($token);
+            $this->view->phpAlert('Your email successfuly confirmed!');
+            $this->actionIndex();
+        }
+
         public function actionRegister()
         {
-            if (count($this->model->checkUser($_POST['login'])) == 0) {
-                $this->model->createUser($_POST['login'], $_POST['password']);
+            $error = [];
+            if ($this->model->getUserLogin($_POST['login']) > 0) {
+                $error['login'] = 'User with this login has already exists';
+                $this->actionError($error);
+                return;
+            } elseif ($res = $this->validator->validateLogin($_POST['login'])) {
+                $error['login'] = $res;
+                $this->actionError($error);
+                return;
+            } elseif ($res = $this->validator->validateEmail($_POST['email'])) {
+                $error['email'] = $res;
+                $this->actionError($error);
+                return;
+            } elseif ($res = $this->validator->validatePassword($_POST['password'])) {
+                $error['password'] = $res;
+                $this->actionError($error);
+                return;
+            } else {
+                $this->model->registerUser($_POST['login'], $_POST['password'], $_POST['email']);
+                $this->view->phpAlert('We`re send mail on your email address, check it to finish registration.');
+                $this->actionIndex();
             }
-            header('Location: /');
+
         }
     }

@@ -14,16 +14,19 @@
                 <label for="loginLogin" class="form-label">Login</label>
                 <input name="login" type="text" required id='loginLogin' class="form-control">
 
-                <?php if ($data === 'login'):?>
-                <span class="error">There is no user with such login.</span>
+                <?php if ($errors['login']):?>
+                    <span class="error"><?php echo($errors['login']);?></span>
+                <?php endif;?>
+                <?php if ($errors['email']):?>
+                        <span class="error"><?php echo($errors['email']);?></span>
                 <?php endif;?>
             </div>
             <div class="login_password mb-3">
                 <label for="loginPassword" class="form-label">Password</label>
                 <input name="password" type="password" required id="loginPassword" class="form-control">
 
-                <?php if ($data === 'password'):?>
-                <span class="error">You entered wrong password.</span>
+                <?php if ($errors['password']):?>
+                    <span class="error"><?php echo($errors['password']);?></span>
                 <?php endif;?>
             </div>
             <div class="login_btns mb-3 d-flex justify-content-evenly">

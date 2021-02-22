@@ -11,10 +11,10 @@
         <header class="header">
             <div class="header_user">
                 <div class="header_user_image">
-                    <img src="" alt="User miniature">
+                    <img src="<?php echo($user_data['avatar']);?>" alt="User miniature">
                 </div>
                 <ul class="header_user_info">
-                    <li class="header_user_name">User Name</li>
+                    <li class="header_user_name"><?php echo($user_data['user_login']);?></li>
                     <li class="header_user_status">status</li>
                 </ul>
             </div>
@@ -23,7 +23,7 @@
             <nav class="main_nav">
                 <ul class="main_nav_list">
                     <li class="main_nav_item"><a class="main_nav_link main_nav_link_chat" href="/chat">Chat</a></li>
-                    <li class="main_nav_item"><a class="main_nav_link main_nav_link_contact" href="#">Contacts</a></li>
+                    <li class="main_nav_item"><a class="main_nav_link main_nav_link_contact" href="/contacts">Contacts</a></li>
                     <li class="main_nav_item"><a class="main_nav_link main_nav_link_settings" href="/settings">Settings</a></li>
                     <li class="main_nav_item"><a class="main_nav_link main_nav_link_exit" href="/login/logout">Exit</a></li>
                 </ul>

@@ -1,0 +1,21 @@
+.contacts{
+    &_wrapper{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &_item{
+        background: #fff;
+        border-radius: 5px;
+        display: flex;
+        flex-basis: 23%;
+        align-items: center;
+        justify-content: space-evenly;
+        margin: 0 10px 10px 0;
+    }
+
+    &_avatar img{
+        width: 50px;
+        border-radius: 50%;
+    }
+}

@@ -19,6 +19,8 @@
         cursor: pointer;
         align-items: center;
         transition: .1s;
+        text-decoration: none;
+        color: #000;
 
         &:hover{
             border: 1px solid #999;

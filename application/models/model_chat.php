@@ -14,6 +14,17 @@
                                     FROM messages
                                     JOIN users ON
                                         messages.user_id = users.user_id";
+        public $sql_user_data = "SELECT
+                                    user_id,
+                                    user_login,
+                                    avatar
+                                FROM users
+                                WHERE user_id = ?";
+
+        public function getUserData($user_id)
+        {
+            return $this->getData($this->sql_user_data, 'i', $user_id);
+        }
 
         public function getMessages()
         {

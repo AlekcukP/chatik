@@ -5,7 +5,8 @@
                                     user_id,
                                     user_password,
                                     user_login,
-                                    avatar
+                                    avatar,
+                                    email_verificated
                                 FROM users
                                 WHERE user_login = ?";
 

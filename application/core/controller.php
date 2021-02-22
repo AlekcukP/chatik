@@ -8,14 +8,4 @@
         {
             $this->view = new View();
         }
-
-        public function actionIndex()
-        {
-
-        }
-
-        public function sesssionCheck()
-        {
-
-        }
     }

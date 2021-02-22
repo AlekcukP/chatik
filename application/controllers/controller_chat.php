@@ -11,7 +11,8 @@
         {
             $this->sessionCheck();
             $messages = $this->model->getMessages();
-            $this->view->generate('chat_view.php', 'template_view.php', $messages);
+            $user_data = $this->model->getUserData($_SESSION['user_id']);
+            $this->view->generate('chat_view.php', 'template_view.php', $messages, '', $user_data);
         }
 
         public function actionSend()
