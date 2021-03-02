@@ -14,15 +14,17 @@
             }
         }
 
-        public function validatePassword($password) {
-            if (strlen($password) <4) {
+        public function validatePassword($password)
+        {
+            if (strlen($password) < 4) {
                 return 'Password must be at least 4 symbols';
             } else {
                 return NULL;
             }
         }
 
-        public function validateEmail($email) {
+        public function validateEmail($email)
+        {
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 return NULL;
             } else {

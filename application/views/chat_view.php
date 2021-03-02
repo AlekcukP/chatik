@@ -47,12 +47,12 @@
         <?php endforeach;?>
     </ul>
     <div class="chat_action">
-        <form method="POST" action="/chat/send" class="chat_form" >
+        <form class="chat_form" >
             <div class="chat_text">
                 <input type="text" name="message" class="form-control" id="input_message">
             </div>
             <div class="chat_send">
-                <input type="submit" value="send" class="btn bg-info bg-gradient" name="submit" id="btn_send">
+                <input type="button" value="send" class="btn bg-info bg-gradient" name="submit" id="btn_send">
             </div>
         </form>
     </div>

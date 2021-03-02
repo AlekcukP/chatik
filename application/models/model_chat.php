@@ -14,12 +14,33 @@
                                     FROM messages
                                     JOIN users ON
                                         messages.user_id = users.user_id";
+        public $sql_message_get = "SELECT
+                                        messages.user_id,
+                                        messages.id, message_text,
+                                        message_time, avatar,
+                                        users.user_login, users.user_id
+                                    FROM messages
+                                    JOIN users ON
+                                        messages.user_id = users.user_id
+                                    WHERE id = ?";
         public $sql_user_data = "SELECT
                                     user_id,
                                     user_login,
                                     avatar
                                 FROM users
                                 WHERE user_id = ?";
+        public $sql_user_id = "SELECT user_id FROM messages WHERE id = ?";
+
+        public function getUserId($message_json)
+        {
+            $message_obj = json_decode($message_json, true);
+            return $this->getData($this->sql_user_id, 'i', $message_obj['message_id']);
+        }
+
+        public function getMessage($message_id)
+        {
+            return $this->getData($this->sql_message_get, 'i', $message_id);
+        }
 
         public function getUserData($user_id)
         {
@@ -39,26 +60,55 @@
             return $result;
         }
 
-        public function createMessage($message_text, $current_user_id)
+        public function createMessage($message_json, $current_user_id)
         {
-            $message_date = date('YmdHms');
-            $this->setData($this->sql_message_create, 'iss', $current_user_id, $message_text, $message_date);
+            $message_obj = json_decode($message_json, true);
+            $message_time = date('YmdHms');
+
+            return $this->setData(
+                $this->sql_message_create,
+                'iss',
+                $current_user_id,
+                $message_obj['message_text'],
+                $message_time
+            );
         }
 
-        public function updateMessage($json)
+        public function updateMessage($message_json)
         {
-            $message_obj = json_decode($json, true);
-            $message_id = $message_obj['message_id'];
-            $message_text = $message_obj['message_text'];
+            $message_obj = json_decode($message_json, true);
 
-            $this->setData($this->sql_message_update, 'si', $message_text, $message_id);
+            $this->setData(
+                $this->sql_message_update,
+                'si',
+                $message_obj['message_text'],
+                $message_obj['message_id']
+            );
         }
 
-        public function deleteMessage($json)
+        public function deleteMessage($message_json)
         {
-            $message_obj = json_decode($json, true);
-            $message_id = $message_obj['message_id'];
+            $message_obj = json_decode($message_json, true);
 
-            $this->setData($this->sql_message_delete, 'i', $message_id);
+            $this->setData($this->sql_message_delete, 'i', $message_obj['message_id']);
+        }
+
+        public function sendToWSS($message)
+        {
+            $curl_session = curl_init();
+
+            $message = json_encode($message);
+
+            curl_setopt($curl_session, CURLOPT_URL, 'http://localhost:8080/message');
+            curl_setopt($curl_session, CURLOPT_POST, 1);
+            curl_setopt($curl_session, CURLOPT_POSTFIELDS, $message);
+            curl_setopt($curl_session, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($message))
+            );
+
+            curl_exec($curl_session);
+
+            curl_close($curl_session);
         }
     }

@@ -30,7 +30,7 @@ class ControllerLogin extends Controller
 
             return;
         }
-        if(!$user_data['email_verificated']){
+        if (!$user_data['email_verificated']) {
             $error['email'] = 'Please, verificate your email.';
             $this->actionError($error);
 

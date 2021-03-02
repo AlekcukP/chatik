@@ -49,6 +49,5 @@
                 $this->view->phpAlert('We`re send mail on your email address, check it to finish registration.');
                 $this->actionIndex();
             }
-
         }
     }

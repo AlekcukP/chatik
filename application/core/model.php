@@ -29,6 +29,9 @@
                 mysqli_stmt_bind_param($stmt, $params_types, ...$params);
                 mysqli_stmt_execute($stmt);
             }
+            $id = mysqli_insert_id($this->link);
             mysqli_stmt_close($stmt);
+
+            return $id;
         }
     }

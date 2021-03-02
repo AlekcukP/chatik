@@ -3,8 +3,8 @@
     {
         public function __construct()
         {
-            $this->model = new ModelChat();
-            $this->view = new View();
+            $this->model = new ModelChat;
+            $this->view = new View;
         }
 
         public function actionIndex()
@@ -17,20 +17,36 @@
 
         public function actionSend()
         {
-            $this->model->createMessage($_POST['message'], $_SESSION['user_id']);
-            header('Location: /');
+            $message_json = file_get_contents('php://input');
+            $inserted_id = $this->model->createMessage($message_json, $_SESSION['user_id']);
+            $message = $this->model->getMessage($inserted_id);
+            $this->model->sendToWSS($message);
         }
 
         public function actionUpdate()
         {
             $message_json = file_get_contents('php://input');
-            $this->model->updateMessage($message_json);
+            $user_id = $this->model->getUserId($message_json);
+
+            if ($user_id['user_id'] === $_SESSION['user_id']) {
+                $this->model->updateMessage($message_json);
+            }
         }
 
         public function actionDelete()
         {
             $message_json = file_get_contents('php://input');
-            $this->model->deleteMessage($message_json);
+            $user_id = $this->model->getUserId($message_json);
+
+            if ($user_id['user_id'] === $_SESSION['user_id']) {
+                $this->model->deleteMessage($message_json);
+            }
+        }
+
+        public function actionUserId()
+        {
+            header('Content-Type: application/json');
+            echo json_encode($_SESSION['user_id']);
         }
 
         public function sessionCheck()

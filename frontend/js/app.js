@@ -16,6 +16,7 @@ import '../png/back.png'
 
 
 import '../scss/main.scss'
+import './ws'
 import './edit'
 import './settings_menu'
 import './display_avatar'
