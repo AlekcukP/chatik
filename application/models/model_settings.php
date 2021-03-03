@@ -28,19 +28,8 @@
             $this->setData($this->sql_update_password, 'si' ,$user_password, $user_id);
         }
 
-        public function updateAvatar($image, $user_id)
+        public function updateAvatar($avatar_path, $user_id)
         {
-            $root = $_SERVER["DOCUMENT_ROOT"];
-            $path = '/avatar/';
-            $full_path = $root . $path;
-            $ext = pathinfo($image['name'], PATHINFO_EXTENSION);
-            $image_name = $image['name'];
-            $new_name = 'user_' . $user_id . '.' . $ext;
-            $avatar_path = $path . $new_name;
-
-            move_uploaded_file($image['tmp_name'], $full_path . $image_name);
-            rename($full_path . $image_name, $full_path . $new_name);
-
             $this->setData($this->sql_update_avatar, 'si', $avatar_path, $user_id);
         }
     }

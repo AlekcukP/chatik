@@ -1,10 +1,13 @@
 <?php
     class ControllerChat extends Controller
     {
+        public $curl;
+
         public function __construct()
         {
             $this->model = new ModelChat;
             $this->view = new View;
+            $this->curl = new Curl(WS_LINK);
         }
 
         public function actionIndex()
@@ -20,7 +23,7 @@
             $message_json = file_get_contents('php://input');
             $inserted_id = $this->model->createMessage($message_json, $_SESSION['user_id']);
             $message = $this->model->getMessage($inserted_id);
-            $this->model->sendToWSS($message);
+            $this->curl->postJson(json_encode($message), 'message');
         }
 
         public function actionUpdate()

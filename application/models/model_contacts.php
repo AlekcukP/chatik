@@ -17,14 +17,6 @@
 
         public function getContacts()
         {
-            $contacts = mysqli_query($this->link, $this->sql_conacts_get);
-
-            $result = array();
-
-            while ($row = mysqli_fetch_assoc($contacts)) {
-                $result[] = $row;
-            }
-
-            return $result;
+            return $this->getAll($this->sql_conacts_get);
         }
     }
