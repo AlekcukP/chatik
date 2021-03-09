@@ -12,6 +12,6 @@
 
         public function getUserData($user_name)
         {
-            return $this->getData($this->sql_user_data, 's', $user_name);
+            return $this->db->getOne($this->sql_user_data, 's', $user_name);
         }
     }

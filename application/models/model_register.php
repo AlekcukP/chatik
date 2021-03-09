@@ -9,7 +9,7 @@
 
         public function getUserLogin($user_name)
         {
-            return $this->getData($this->sql_login_check, 's', $user_name);
+            return $this->db->getOne($this->sql_login_check, 's', $user_name);
         }
 
         public function registerUser($user_name, $user_password, $user_email)
@@ -22,7 +22,7 @@
         public function confirmEmail($token)
         {
             $time = date('d.m.Y H:m:s');
-            $this->setData($this->sql_email_confirm, 'ss', $time, $token);
+            $this->db->setData($this->sql_email_confirm, 'ss', $time, $token);
         }
 
         public function createUser($user_name, $user_password, $user_email, $user_token)
@@ -30,7 +30,7 @@
             $user_password = trim($user_password);
             $user_avatar = '/avatar/default.png';
 
-            $this->setData(
+            $this->db->setData(
                 $this->sql_create_user,
                 'sssss',
                 $user_name,

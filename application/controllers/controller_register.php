@@ -21,15 +21,14 @@
         public function actionConfirm($token)
         {
             $this->model->confirmEmail($token);
-            $this->view->phpAlert('Your email successfuly confirmed!');
-            $this->actionIndex();
+            header('Location: /');
         }
 
         public function actionRegister()
         {
             $error = [];
             if ($this->model->getUserLogin($_POST['login']) > 0) {
-                $error['login'] = 'User with this login has already exists';
+                $error['login'] = 'User with this login has already exist';
                 $this->actionError($error);
                 return;
             } elseif ($res = $this->validator->validateLogin($_POST['login'])) {

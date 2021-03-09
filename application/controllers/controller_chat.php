@@ -2,12 +2,15 @@
     class ControllerChat extends Controller
     {
         public $curl;
+        private $jwt;
+        private $token;
 
         public function __construct()
         {
             $this->model = new ModelChat;
             $this->view = new View;
             $this->curl = new Curl(WS_LINK);
+            $this->jwt = new Jwt;
         }
 
         public function actionIndex()
@@ -20,9 +23,14 @@
 
         public function actionSend()
         {
+            if (!$this->token) {
+                $this->token = $this->jwt->generate($_SESSION['user_id']);
+            }
+
             $message_json = file_get_contents('php://input');
             $inserted_id = $this->model->createMessage($message_json, $_SESSION['user_id']);
             $message = $this->model->getMessage($inserted_id);
+            $message['jwt'] = $this->token;
             $this->curl->postJson(json_encode($message), 'message');
         }
 
@@ -52,7 +60,7 @@
             echo json_encode($_SESSION['user_id']);
         }
 
-        public function sessionCheck()
+        private function sessionCheck()
         {
             if (!isset($_SESSION['user_id'])) {
                 header('Location: /');

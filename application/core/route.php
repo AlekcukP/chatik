@@ -35,7 +35,7 @@
                 include $model_path;
             }
 
-            if(file_exists($controller_path)) {
+            if (file_exists($controller_path)) {
                 include $controller_path;
             } else {
                 Route::ErrorPage404();

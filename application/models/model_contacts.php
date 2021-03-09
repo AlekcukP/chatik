@@ -12,11 +12,11 @@
 
         public function getUserData($user_id)
         {
-            return $this->getData($this->sql_user_data, 'i', $user_id);
+            return $this->db->getOne($this->sql_user_data, 'i', $user_id);
         }
 
         public function getContacts()
         {
-            return $this->getAll($this->sql_conacts_get);
+            return $this->db->getAll($this->sql_conacts_get);
         }
     }

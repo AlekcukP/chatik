@@ -34,22 +34,22 @@
         public function getUserId($message_json)
         {
             $message_obj = json_decode($message_json, true);
-            return $this->getData($this->sql_user_id, 'i', $message_obj['message_id']);
+            return $this->db->getOne($this->sql_user_id, 'i', $message_obj['message_id']);
         }
 
         public function getMessage($message_id)
         {
-            return $this->getData($this->sql_message_get, 'i', $message_id);
+            return $this->db->getOne($this->sql_message_get, 'i', $message_id);
         }
 
         public function getUserData($user_id)
         {
-            return $this->getData($this->sql_user_data, 'i', $user_id);
+            return $this->db->getOne($this->sql_user_data, 'i', $user_id);
         }
 
         public function getMessages()
         {
-            return $this->getAll($this->sql_messages_get);
+            return $this->db->getAll($this->sql_messages_get);
         }
 
         public function createMessage($message_json, $current_user_id)
@@ -57,7 +57,7 @@
             $message_obj = json_decode($message_json, true);
             $message_time = date('YmdHms');
 
-            return $this->setData(
+            return $this->db->setData(
                 $this->sql_message_create,
                 'iss',
                 $current_user_id,
@@ -70,7 +70,7 @@
         {
             $message_obj = json_decode($message_json, true);
 
-            $this->setData(
+            $this->db->setData(
                 $this->sql_message_update,
                 'si',
                 $message_obj['message_text'],
@@ -81,6 +81,6 @@
         public function deleteMessage($message_json)
         {
             $message_obj = json_decode($message_json, true);
-            $this->setData($this->sql_message_delete, 'i', $message_obj['message_id']);
+            $this->db->setData($this->sql_message_delete, 'i', $message_obj['message_id']);
         }
     }
